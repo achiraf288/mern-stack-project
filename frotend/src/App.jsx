@@ -20,15 +20,17 @@ const App = () => {
   return (
     <Router>
       {user && <Navbar setUser={setUser} />}
-      <Routes>
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/register" element={<Register />} />
+      <div className="min-h-screen bg-gray-50">
+        <Routes>
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Protected Routes */}
-        <Route path="/" element={user ? (user.role === "admin" ? <Navigate to="/admin" /> : <Home />) : <Navigate to="/login" />} />
-        <Route path="/admin" element={user && user.role === "admin" ? <Admin /> : <Navigate to="/login" />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} /> {/* Added Route */}
-      </Routes>
+          {/* Protected Routes */}
+          <Route path="/" element={user ? (user.role === "admin" ? <Navigate to="/admin" /> : <Home />) : <Navigate to="/login" />} />
+          <Route path="/admin" element={user && user.role === "admin" ? <Admin /> : <Navigate to="/login" />} />
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
